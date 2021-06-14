@@ -1,6 +1,7 @@
-Feature: Sum two plus two
+Feature: Sum numbers
   As a user
-  I want to sum two plus two
+  I want to sum numbers
+  In order to know the result of the sum
 
   Background:
       Given we are a user
