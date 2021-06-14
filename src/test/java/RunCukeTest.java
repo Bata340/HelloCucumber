@@ -16,38 +16,42 @@ import org.junit.runner.RunWith;
         }
 )
 public class RunCukeTest {
-    @Given("^we are a user$")
-    public void we_are_a_user(){
-        System.out.println("Soy usuario");
+    private Customer customer;
+
+    @Given("^we are a customer$")
+    public void we_are_a_customer(){
+        customer = new Customer("username_generico", "password_generico");
     }
 
-    @When("^we want to know the result of two plus two$")
-    public void we_want_to_know_the_result_of_two_plus_two(){
-        System.out.println("Quiero saber el resultado de 2+2");
+    @When("^we want to login with our username and password correctly$")
+    public void we_want_to_login_with_our_username_and_password_correctly(){
+        customer.login("username_generico", "password_generico");
     }
 
-    @Then("^the result is 4")
-    public void the_result_is_4(){
-        Assert.assertEquals(4,2+2);
+    @Then("^our password and username are correctly validated")
+    public void our_password_and_username_are_correctly_validated(){
+        Assert.assertTrue(customer.validate_password());
+        Assert.assertTrue(customer.validate_username());
     }
 
-    @When("^we want to know the result of three plus three$")
-    public void we_want_to_know_the_result_of_three_plus_three(){
-        System.out.println("Quiero saber el resultado de 3+3");
+    @When("^we want to login with our username wrongly$")
+    public void we_want_to_login_with_our_username_wrongly(){
+        customer.login("username_distinto", "password_generico");
     }
 
-    @Then("^the result is 6")
-    public void the_result_is_6(){
-        Assert.assertEquals(6,3+3);
+    @Then("^our username is not validated correctly")
+    public void our_username_is_not_validated_correctly(){
+        Assert.assertFalse(customer.validate_username());
     }
 
-    @When("^we want to know the result of four plus four$")
-    public void we_want_to_know_the_result_of_four_plus_four(){
-        System.out.println("Quiero saber el resultado de 4+4");
+    @When("^we want to login with our password wrongly$")
+    public void we_want_to_login_with_our_password_wrongly(){
+        customer.login("username_generico", "password_distinta");
     }
 
-    @Then("^the result is 8")
-    public void the_result_is_8(){
-        Assert.assertEquals(8,4+4);
+    @Then("^our password is not validated correctly")
+    public void our_password_is_not_validated_correctly(){
+
+        Assert.assertFalse(customer.validate_password());
     }
 }

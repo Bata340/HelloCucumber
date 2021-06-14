@@ -1,19 +1,19 @@
-Feature: Sum numbers
-  As a user
-  I want to sum numbers
-  In order to know the result of the sum
+Feature: Log into a buying system
+  As a customer
+  I want to login with username and password
+  In order to buy some things in the website I am logging into.
 
   Background:
-      Given we are a user
+      Given we are a customer
 
-  Scenario: Sum two plus two
-    When we want to know the result of two plus two
-    Then the result is 4
+  Scenario: Log in correctly
+    When we want to login with our username and password correctly
+    Then our password and username are correctly validated
 
-  Scenario: Sum three plus three
-    When we want to know the result of three plus three
-    Then the result is 6
+  Scenario: Log in with bad username
+    When we want to login with our username wrongly
+    Then our username is not validated correctly
 
-  Scenario: Sum four plus four
-    When we want to know the result of four plus four
-    Then the result is 8
+  Scenario: Log in with bad password
+    When we want to login with our password wrongly
+    Then our password is not validated correctly
